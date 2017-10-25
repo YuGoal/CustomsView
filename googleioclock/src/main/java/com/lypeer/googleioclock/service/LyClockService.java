@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.lypeer.googleioclock.event.TimeUpdateEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.sql.Time;
+import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,6 +29,18 @@ import java.util.TimerTask;
  * Created by lypeer on 16/9/14.
  */
 public class LyClockService extends Service {
+    private static final String TAG = "LyClockService";
+    //Ten and single digits of hour
+    private int mYearTenDigits;
+    private int mYearSingleDigits;
+    private int mYearHunDigits;
+    private int mYearThoDigits;
+
+    private int mMonthTenDigits;
+    private int mMonthSingleDigits;
+
+    private int mDayTenDigits;
+    private int mDaySingleDigits;
 
     private int mHourTenDigits;
     private int mHourSingleDigits;
@@ -117,6 +132,14 @@ public class LyClockService extends Service {
 
     private void sendEvent() {
         EventBus.getDefault().post(new TimeUpdateEvent(
+                mYearThoDigits,
+                mYearHunDigits,
+                mYearTenDigits,
+                mYearSingleDigits,
+                mMonthTenDigits,
+                mMonthSingleDigits,
+                mDayTenDigits,
+                mDaySingleDigits,
                 mHourTenDigits,
                 mHourSingleDigits,
                 mMinTenDigits,
@@ -131,7 +154,27 @@ public class LyClockService extends Service {
      */
     @SuppressWarnings("deprecation")
     private void initTime() {
+        Calendar c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));//东八区
+
         Time time = new Time(System.currentTimeMillis());
+
+        int year = c.get(Calendar.YEAR);
+        mYearThoDigits = year / 1000;
+        mYearHunDigits = year / 100 % 10;
+        mYearTenDigits = year % 1000 / 10;
+        mYearSingleDigits = year % 10;
+
+        int month = c.get(Calendar.MONTH)+1;
+        mMonthTenDigits = month / 10;
+        mMinSingleDigits = month % 10;
+
+
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        mDayTenDigits = day / 10;
+        mDaySingleDigits = day % 10;
+        Log.d(TAG, "initTime: "+day+": "+mDayTenDigits+mDaySingleDigits);
+
 
         int hours = time.getHours();
         mHourSingleDigits = hours % 10;

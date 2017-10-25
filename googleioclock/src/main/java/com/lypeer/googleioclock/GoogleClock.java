@@ -33,12 +33,21 @@ import java.util.List;
  */
 public class GoogleClock extends LinearLayout {
 
+    private ImageView mIvYearsSingleDigits;
+    private ImageView mIvYearsTenDigits;
+    private ImageView mIvYearsHunDigits;
+    private ImageView mIvYearsThoDigits;
     private ImageView mIvHourTenDigits;
     private ImageView mIvHourSingleDigits;
     private ImageView mIvMinTenDigits;
     private ImageView mIvMinSingleDigits;
     private ImageView mIvSecTenDigits;
     private ImageView mIvSecSingleDigits;
+
+    private ImageView mIvMonthTenDigits;
+    private ImageView mIvMonthSingleDigits;
+    private ImageView mIvDayTenDigits;
+    private ImageView mIvDaySingleDigits;
     private ImageView mIvColon;
 
     //it contains the drawable res id of all the numbers
@@ -72,6 +81,14 @@ public class GoogleClock extends LinearLayout {
     private int mYearsTenDigits = -1;
     private int mYearsHunDigits = -1;
     private int mYearsThoDigits = -1;
+
+
+    private int mMonthTenDigits = -1;
+    private int mMonthSingleDigits = -1;
+    private int mDayTenDigits = -1;
+    private int mDaySingleDigits = -1;
+
+
 
     public GoogleClock(Context context) {
         super(context, null);
@@ -118,6 +135,16 @@ public class GoogleClock extends LinearLayout {
         mIvMinSingleDigits = (ImageView) findViewById(R.id.iv_min_single_digits);
         mIvSecTenDigits = (ImageView) findViewById(R.id.iv_sec_ten_digits);
         mIvSecSingleDigits = (ImageView) findViewById(R.id.iv_sec_single_digits);
+
+        mIvYearsSingleDigits = (ImageView) findViewById(R.id.iv_yer_single_digits);
+        mIvYearsTenDigits = (ImageView) findViewById(R.id.iv_yer_ten_digits);
+        mIvYearsHunDigits = (ImageView) findViewById(R.id.iv_yer_hun_digits);
+        mIvYearsThoDigits = (ImageView) findViewById(R.id.iv_yer_tho_digits);
+
+        mIvMonthTenDigits = (ImageView) findViewById(R.id.iv_mon_ten_digits);
+        mIvMonthSingleDigits = (ImageView) findViewById(R.id.iv_mon_single_digits);
+        mIvDayTenDigits = (ImageView) findViewById(R.id.iv_day_ten_digits);
+        mIvDaySingleDigits = (ImageView) findViewById(R.id.iv_day_single_digits);
         mIvColon = (ImageView) findViewById(R.id.iv_colon);
 
         changeSize(mHourWidth, mClockWidth, mIvHourTenDigits);
@@ -127,18 +154,7 @@ public class GoogleClock extends LinearLayout {
         changeSize(mSecWidth, mClockWidth, mIvSecTenDigits);
         changeSize(mSecWidth, mClockWidth, mIvSecSingleDigits);
 
-//        View mViewDividerHorizontal0 = findViewById(R.id.view_divider_horizontal_0);
-//        View mViewDividerHorizontal1 = findViewById(R.id.view_divider_horizontal_1);
-//        View mViewDividerHorizontal2 = findViewById(R.id.view_divider_horizontal_2);
         View mViewDividerVertical = findViewById(R.id.view_divider_vertical);
-
-//        if (mDividerHorizontal != 0.0f) {
-//            ViewGroup.LayoutParams params = mViewDividerHorizontal0.getLayoutParams();
-//            params.width = (int) mDividerHorizontal;
-//            mViewDividerHorizontal0.setLayoutParams(params);
-//            mViewDividerHorizontal1.setLayoutParams(params);
-////            mViewDividerHorizontal2.setLayoutParams(params);
-//        }
 
         if (mDividerVertical != 0.0f) {
             ViewGroup.LayoutParams params = mViewDividerVertical.getLayoutParams();
@@ -216,6 +232,40 @@ public class GoogleClock extends LinearLayout {
             updateImageView(mIvSecSingleDigits, mResList.get(event.getSecSingleDigits()));
             mSecSingleDigits = event.getSecSingleDigits();
         }
+        if (mYearsThoDigits != event.getYearThoDigits()) {
+            updateImageView(mIvYearsThoDigits, mResList.get(event.getYearThoDigits()));
+            mYearsThoDigits = event.getYearThoDigits();
+        }
+        if (mYearsHunDigits != event.getYearHunDigits()){
+            updateImageView(mIvYearsHunDigits, mResList.get(event.getYearHunDigits()));
+            mYearsHunDigits = event.getYearHunDigits();
+        }
+        if (mYearsTenDigits != event.getYearTenDigits()){
+            updateImageView(mIvYearsTenDigits, mResList.get(event.getYearTenDigits()));
+            mYearsTenDigits = event.getYearTenDigits();
+        }
+        if (mYearsSingleDigits != event.getYearSingleDigits()){
+            updateImageView(mIvYearsSingleDigits, mResList.get(event.getYearSingleDigits()));
+            mYearsSingleDigits = event.getYearSingleDigits();
+        }
+        if (mMonthTenDigits != event.getMonthTenDigits()){
+            updateImageView(mIvMonthTenDigits, mResList.get(event.getMonthTenDigits()));
+            mMonthTenDigits = event.getMonthTenDigits();
+        }
+        if (mMonthSingleDigits != event.getMonthSingleDigits()){
+            updateImageView(mIvMonthSingleDigits, mResList.get(event.getMonthSingleDigits()));
+            mMonthSingleDigits = event.getMonthSingleDigits();
+        }
+        if (mDayTenDigits != event.getDayTenDigits()){
+            updateImageView(mIvDayTenDigits, mResList.get(event.getDayTenDigits()));
+            mDayTenDigits = event.getDayTenDigits();
+        }
+        if (mDaySingleDigits != event.getDaySingleDigits()){
+            updateImageView(mIvDaySingleDigits, mResList.get(event.getDaySingleDigits()));
+            mDaySingleDigits = event.getDaySingleDigits();
+        }
+
+
         updateImageView(mIvColon, R.drawable.animated_colon);
     }
 

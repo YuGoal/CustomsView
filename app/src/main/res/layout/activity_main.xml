@@ -17,4 +17,5 @@
         app:lyMinWidth="50dp"
         app:lySecWidth="50dp"
         app:lyTheme="@style/LyTheme" />
+
 </LinearLayout>

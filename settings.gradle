@@ -1,1 +1,1 @@
-include ':app', ':googleioclock', ':ColorPickerPreference'
+include ':app', ':googleioclock'

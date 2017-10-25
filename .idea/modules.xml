@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ColorPickerPreference/ColorPickerPreference.iml" filepath="$PROJECT_DIR$/ColorPickerPreference/ColorPickerPreference.iml" />
       <module fileurl="file://$PROJECT_DIR$/CustomsView.iml" filepath="$PROJECT_DIR$/CustomsView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/googleioclock/googleioclock.iml" filepath="$PROJECT_DIR$/googleioclock/googleioclock.iml" />
